@@ -1,15 +1,14 @@
-const fs = require('fs')
 const express = require('express')
 const toursRouter = express.Router()
 
-const tourController = require('../controllers/tourController')
+const tourController = require('../controllers/toursController')
 
-toursRouter.route('/api/v1/tours')
+toursRouter.route('/')
     .get(tourController.getTours)
     .post(tourController.createTour)
 
 
-toursRouter.route('/api/v1/tours/:id')
+toursRouter.route('/:id')
     .get(tourController.getTourById)
     .patch(tourController.updateTour)
     .delete(tourController.deleteTour)

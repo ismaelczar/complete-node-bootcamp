@@ -1,0 +1,31 @@
+{
+  "name": "complete-node-bootcamp",
+  "version": "1.0.0",
+  "description": "API Node Natorus",
+  "main": "app.js",
+  "dependencies": {
+    "basic-auth": "^2.0.1",
+    "debug": "^2.6.9",
+    "depd": "^2.0.0",
+    "ee-first": "^1.1.1",
+    "express": "^4.21.2",
+    "morgan": "^1.10.0",
+    "ms": "^2.0.0",
+    "on-finished": "^2.3.0",
+    "on-headers": "^1.0.2",
+    "safe-buffer": "^5.1.2"
+  },
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ismaelczar/complete-node-bootcamp.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ismaelczar/complete-node-bootcamp/issues"
+  },
+  "homepage": "https://github.com/ismaelczar/complete-node-bootcamp#readme"
+}

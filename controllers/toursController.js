@@ -1,6 +1,22 @@
 const fs = require('fs')
 const tours = JSON.parse(fs.readFileSync(`${__dirname}/../dev-data/data/tours-simple.json`))
 
+const findTourById = (req, res, next) => {
+    const id = req.params.id * 1;
+    const tour = tours.find((tour) => tour.id === id)
+
+    if (!tour) {
+        return res.status(400).json({
+            status: 'fail',
+            message: 'Id invalid'
+        })
+    }
+
+    req.tour = tour
+
+    next()
+}
+
 const getTours = (req, res) => {
     return res.status(200).json({
         status: 'success',
@@ -12,15 +28,7 @@ const getTours = (req, res) => {
 }
 
 const getTourById = (req, res) => {
-    const id = req.params.id * 1
-    const tour = tours.find((tour) => tour.id === id)
-
-    if (!tour) {
-        return res.status(400).json({
-            status: 'fail',
-            message: 'Id invalid'
-        })
-    }
+    const tour = req.tour
 
     return res.status(200).json({
         status: 'success',
@@ -37,52 +45,32 @@ const createTour = (req, res) => {
 
     tours.push(newTour)
 
-    fs.watchFile(`${__dirname}/dev-data/data/tours-simple.json`, JSON.stringify(tours), err => {
-        res.status(201).json({
-            status: 'success',
-            data: {
-                tour: newTour
-            }
-        })
+    return res.status(200).json({
+        status: 'success',
+        data: {
+            newTour: newTour
+        }
     })
-
-    return
 }
 
 const updateTour = (req, res) => {
-    const id = req.params.id;
-    const tour = tours.find((tour) => tour.id === id)
-
-    if (!tour) {
-        return res.status(400).json({
-            status: 'faild',
-            message: 'Tour not found.'
-        })
-    }
+    Object.assign(req.tour, req.body)
 
     return res.status(200).json({
         status: 'success',
         data: {
-            tour: newTour
+            tour: req.tour
         }
     })
 }
 
 const deleteTour = (req, res) => {
-    const id = req.params.id;
-    const tour = tours.find((tour) => tour.id === id);
+    const tour = req.tour
 
-    if (!tour) {
-        return res.status(400).json({
-            status: 'faild',
-            message: 'Tour not found.'
-        })
-    }
-
-    return res.status(200).json({
+    return res.status(204).json({
         status: 'sucess',
         data: null
     })
 }
 
-module.exports = { getTours, getTourById, createTour, updateTour, deleteTour }
+module.exports = { getTours, getTourById, createTour, updateTour, deleteTour, findTourById }

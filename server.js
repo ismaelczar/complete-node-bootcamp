@@ -1,6 +1,10 @@
+const config = require('./config')
 const app = require('./app')
 
-const port = 3000
-app.listen(port, () => {
-    console.log(`App running on port ${port}`)
-})
+app.get('/', (req, res) => {
+    res.send(`Rodando no ambiente: ${config.nodeEnv}`);
+});
+
+app.listen(config.port, () => {
+    console.log(`Servidor rodando na porta ${config.port}`);
+});

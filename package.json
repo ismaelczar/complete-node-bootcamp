@@ -7,6 +7,7 @@
     "basic-auth": "^2.0.1",
     "debug": "^2.6.9",
     "depd": "^2.0.0",
+    "dotenv": "^16.4.7",
     "ee-first": "^1.1.1",
     "express": "^4.21.2",
     "morgan": "^1.10.0",
@@ -16,7 +17,8 @@
     "safe-buffer": "^5.1.2"
   },
   "scripts": {
-    "start": "nodemon server.js"
+    "start": "cross-env NODE_ENV=production nodemon server.js",
+    "dev": "cross-env NODE_ENV=development nodemon server.js"
   },
   "repository": {
     "type": "git",
@@ -27,5 +29,8 @@
   "bugs": {
     "url": "https://github.com/ismaelczar/complete-node-bootcamp/issues"
   },
-  "homepage": "https://github.com/ismaelczar/complete-node-bootcamp#readme"
+  "homepage": "https://github.com/ismaelczar/complete-node-bootcamp#readme",
+  "devDependencies": {
+    "cross-env": "^7.0.3"
+  }
 }
